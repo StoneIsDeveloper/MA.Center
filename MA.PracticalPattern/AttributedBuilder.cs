@@ -18,6 +18,9 @@ namespace MA.PracticalPattern
 
     }
 
+    [Director(1, "BuildPartA")]
+    [Director(2,"BuildPartB")]
+    [Director(3, "BuildPartC")]
     public class AttributedBuilder : IAttributedBuilder
     {
         public IList<string> log = new List<string>();

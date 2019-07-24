@@ -41,11 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="AttributedBuilder.cs" />
     <Compile Include="Director.cs" />
     <Compile Include="DiretorAttribute.cs" />
     <Compile Include="GenericAdapterBase.cs" />
+    <Compile Include="Indexer\Dashboard.cs" />
     <Compile Include="IOrganization.cs" />
+    <Compile Include="Iterator\BinaryTreeNode.cs" />
+    <Compile Include="Iterator\CompositeIterator.cs" />
+    <Compile Include="Iterator\ObjectWithName.cs" />
+    <Compile Include="Iterator\RawIterator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RawGenericFactory.cs" />
   </ItemGroup>
