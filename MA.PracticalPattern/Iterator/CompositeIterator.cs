@@ -42,6 +42,26 @@ namespace MA.PracticalPattern.Iterator
                 || type.IsAssignableFrom(typeof(Stack<ObjectWithName>)))
                 return DynamicInvokeEnumerator(data);
 
+            // 是否为 Queue
+            if(type.IsAssignableFrom(typeof(Queue))
+                || type.IsAssignableFrom(typeof(Queue<ObjectWithName>)))
+            {
+                return DynamicInvokeEnumerator(data);
+            }
+
+            //是否为 Array
+            if(type.IsArray && type.GetElementType().IsAssignableFrom(typeof(ObjectWithName)))
+            {
+                return ((ObjectWithName[])data).GetEnumerator();
+            }
+
+            // 是否为 二叉树
+            if (type.IsAssignableFrom(typeof(BinaryTreeNode)))
+            {
+                return ((BinaryTreeNode)data).GetEnumerator();
+            }
+
+            throw new NotSupportedException();
 
         }
 
