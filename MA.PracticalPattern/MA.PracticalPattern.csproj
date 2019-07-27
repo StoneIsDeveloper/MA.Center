@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,6 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AttributedBuilder.cs" />
+    <Compile Include="Configurating\ChapterConfigurationSectionGroup.cs" />
+    <Compile Include="Configurating\ConfigurationBroker.cs" />
+    <Compile Include="Configurating\NameConfigurationElementCollectionBase.cs" />
+    <Compile Include="Configurating\NamedConfigurationElementBase.cs" />
+    <Compile Include="Configurating\ParagraphConfigurationSectionBase.cs" />
     <Compile Include="Director.cs" />
     <Compile Include="DiretorAttribute.cs" />
     <Compile Include="GenericAdapterBase.cs" />
@@ -51,6 +57,9 @@
     <Compile Include="Iterator\CompositeIterator.cs" />
     <Compile Include="Iterator\ObjectWithName.cs" />
     <Compile Include="Iterator\RawIterator.cs" />
+    <Compile Include="Operator\Adaptee.cs" />
+    <Compile Include="Operator\ErrorEntity.cs" />
+    <Compile Include="Operator\Season.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RawGenericFactory.cs" />
   </ItemGroup>

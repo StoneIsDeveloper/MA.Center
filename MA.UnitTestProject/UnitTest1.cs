@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using MA.PracticalPattern;
+using MA.PracticalPattern.Configurating;
 using MA.PracticalPattern.Indexer;
 using MA.PracticalPattern.Iterator;
+using MA.PracticalPattern.Operator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static MA.PracticalPattern.Configurating.ParagraphConfigurationSectionBase;
 
 namespace MA.UnitTestProject
 {
@@ -84,7 +87,7 @@ namespace MA.UnitTestProject
             array[1] = new ObjectWithName("6");
             array[2] = new ObjectWithName("7");
 
-            //BinaryTree
+            // BinaryTree
             BinaryTreeNode root = new BinaryTreeNode("8");
             root.Left = new BinaryTreeNode("9");
             root.Right = new BinaryTreeNode("10");
@@ -111,5 +114,57 @@ namespace MA.UnitTestProject
             }
             var length = logs.Count;
         }
+
+        [TestMethod]
+        public void Operator()
+        {
+            Season season = new Season();
+            season++;
+            season++;
+            var n = season.ToString();
+
+
+        }
+
+        [TestMethod]
+        public void OperaorErrorEntity()
+        {
+            ErrorEntity entity = new ErrorEntity();
+            entity += "hello";
+            entity += 1;
+            entity += 2;
+
+            var m = entity.Messages;
+            var c = entity.Codes;
+
+        }
+
+        [TestMethod]
+        public void OperatorAdaptee()
+        {
+            Adaptee adaptee = new Adaptee();
+            adaptee.Code = 2;
+
+            Target target = adaptee;
+            Assert.AreEqual<int>(adaptee.Code, target.Data);
+            List<Target> targets = new List<Target>();
+            targets.Add(adaptee);
+            targets.Add(adaptee);
+
+            var n = targets[1].Data;
+
+        }
+
+        [TestMethod]
+        public void Config()
+        {
+            DelegatingParagramConfigurationSection section = ConfigurationBroker.Delegating;
+            var color = section.Pictures["EventHandler"].Colorized;
+            var a1 = section.Examples["MulticastMotify"].Description;
+
+            GenericsParagramConfigurationSection s2 = ConfigurationBroker.Generics;
+            var n = s2.Diagrams.Count;
+        }
+
     }
 }

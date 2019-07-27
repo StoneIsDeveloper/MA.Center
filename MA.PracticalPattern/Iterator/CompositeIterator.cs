@@ -65,6 +65,7 @@ namespace MA.PracticalPattern.Iterator
 
         }
 
+        //通过反射动态调用相关实例的 GetEnumerator 方法获取 IEnumerator
         private static IEnumerator DynamicInvokeEnumerator(object data)
         {
             if (data == null)
