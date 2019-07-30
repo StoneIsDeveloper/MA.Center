@@ -17,6 +17,8 @@ namespace MA.PracticalPattern.Configurating
             Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
             group = (ChapterConfigurationSectionGroup)configuration.GetSectionGroup("MA.PracticalPattern");
+
+            ConfigurationSectionGroup groupCreator = configuration.GetSectionGroup("MA.PracticalPattern");
         }
 
         public static DelegatingParagramConfigurationSection Delegating

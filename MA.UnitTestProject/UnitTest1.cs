@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MA.PracticalPattern;
+using MA.PracticalPattern.Common;
 using MA.PracticalPattern.Configurating;
 using MA.PracticalPattern.Indexer;
 using MA.PracticalPattern.Iterator;
@@ -164,6 +165,15 @@ namespace MA.UnitTestProject
 
             GenericsParagramConfigurationSection s2 = ConfigurationBroker.Generics;
             var n = s2.Diagrams.Count;
+        }
+
+        [TestMethod]
+        public void TypeCreator()
+        {
+            TypeCreator creator = new TypeCreator();
+            var p = creator.BuildUp<Production>(new string[] { "Apple" });
+
+
         }
 
     }

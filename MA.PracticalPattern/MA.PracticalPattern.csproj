@@ -43,11 +43,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AttributedBuilder.cs" />
+    <Compile Include="Common\IObjectBuilder.cs" />
+    <Compile Include="Common\TypeCreator.cs" />
     <Compile Include="Configurating\ChapterConfigurationSectionGroup.cs" />
     <Compile Include="Configurating\ConfigurationBroker.cs" />
     <Compile Include="Configurating\NameConfigurationElementCollectionBase.cs" />
     <Compile Include="Configurating\NamedConfigurationElementBase.cs" />
     <Compile Include="Configurating\ParagraphConfigurationSectionBase.cs" />
+    <Compile Include="DependencyInjection\Assembler.cs" />
+    <Compile Include="DependencyInjection\Client.cs" />
+    <Compile Include="DependencyInjection\TimeProvider.cs" />
     <Compile Include="Director.cs" />
     <Compile Include="DiretorAttribute.cs" />
     <Compile Include="GenericAdapterBase.cs" />
