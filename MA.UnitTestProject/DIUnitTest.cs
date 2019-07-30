@@ -21,7 +21,13 @@ namespace MA.UnitTestProject
         {
             ITimeProvider timeProvider = (new Assembler()).Create<ITimeProvider>();
             Client client = new Client(timeProvider);// 构造函数注入
+            var year = client.GetYear();
+        }
 
+        [TestMethod]
+        public void TestMethod2()
+        {
+            Client client = new Client();
             var year = client.GetYear();
 
         }

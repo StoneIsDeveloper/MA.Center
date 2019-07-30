@@ -51,7 +51,9 @@
     <Compile Include="Configurating\NamedConfigurationElementBase.cs" />
     <Compile Include="Configurating\ParagraphConfigurationSectionBase.cs" />
     <Compile Include="DependencyInjection\Assembler.cs" />
+    <Compile Include="DependencyInjection\AttributeHelper.cs" />
     <Compile Include="DependencyInjection\Client.cs" />
+    <Compile Include="DependencyInjection\DecoratorAttribute.cs" />
     <Compile Include="DependencyInjection\TimeProvider.cs" />
     <Compile Include="Director.cs" />
     <Compile Include="DiretorAttribute.cs" />
