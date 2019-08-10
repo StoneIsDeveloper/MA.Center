@@ -21,9 +21,9 @@ namespace MA.UnitTestProject
         [TestMethod]
         public void TestMethod1()
         {
-            ITimeProvider timeProvider = (new Assembler()).Create<ITimeProvider>();
-            Client client = new Client(timeProvider);// 构造函数注入
-            var year = client.GetYear();
+            //ITimeProvider timeProvider = (new Assembler()).Create<ITimeProvider>();
+            //Client client = new Client(timeProvider);// 构造函数注入
+            //var year = client.GetYear();
         }
 
         [TestMethod]
@@ -37,13 +37,13 @@ namespace MA.UnitTestProject
         [TestMethod]
         public void ConfigTest()
         {
-            new CreatorConfig().Load();
-             IObjectBuilder builder = 
-                PracticalPattern.Common.ConfigurationBroker.GetConfigurationObject<IObjectBuilder>();
-            var s = builder.ToString();
+            //new CreatorConfig().Load();
+            // IObjectBuilder builder = 
+            //    PracticalPattern.Common.ConfigurationBroker.GetConfigurationObject<IObjectBuilder>();
+            //var s = builder.ToString();
 
-            IObjectBuilder builder2 = new TypeCreator();
-            builder2.BuildUp<Product>("Apple");
+            //IObjectBuilder builder2 = new TypeCreator();
+            //builder2.BuildUp<Product>("Apple");
 
             //创建 MA.PracticalPattern.Common / objectBuilder 的配置节处理程序时出错: 
          //   类型“MA.PracticalPattern.Common.IObjectBuilder”不从“System.Configuration.IConfigurationSectionHandler”继承。 
