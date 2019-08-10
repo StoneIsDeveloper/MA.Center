@@ -9,6 +9,7 @@ namespace MA.PracticalPattern.Common
 {
     public class GenericCache<TKey, TValue>
     {
+        #region Fileds
         // 内部的 Dictionary 容器
         private Dictionary<TKey, TValue> dictionary = new Dictionary<TKey, TValue>();
 
@@ -17,7 +18,9 @@ namespace MA.PracticalPattern.Common
 
         // 用于指定超时时间
         private readonly TimeSpan lockTimeOut = TimeSpan.FromMilliseconds(100);
+        #endregion
 
+        #region Methods
         public void Add(TKey key,TValue value)
         {
             bool isExisting = false;
@@ -83,10 +86,26 @@ namespace MA.PracticalPattern.Common
             {
                 return false;
             }
-
-
+            bool result;
+            rwLock.AcquireReaderLock(lockTimeOut);
+            try
+            {
+                result = dictionary.ContainsKey(key);
+            }
+            finally
+            {
+                rwLock.ReleaseReaderLock();
+            }
+            return result;
         }
+        #endregion
 
+        #region Properties
+        /// <summary>
+        /// Dictinary中键值对的数目
+        /// </summary>
+        public int Count { get { return dictionary.Count; } }
+        #endregion
 
 
 

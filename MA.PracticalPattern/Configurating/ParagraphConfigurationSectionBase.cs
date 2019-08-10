@@ -49,4 +49,18 @@ namespace MA.PracticalPattern.Configurating
     {
 
     }
+
+    public class ObjectBuilderParagramConfigurationSection : ConfigurationSection
+    {
+        private const string ObjectBuilderItem = "entityMappings";
+
+        [ConfigurationProperty(ObjectBuilderItem, IsRequired = false)]
+        public virtual EntityMappingConfigurationElementCollection EntityMappings
+        {
+            get
+            {
+                return base[ObjectBuilderItem] as EntityMappingConfigurationElementCollection;
+            }
+        }
+    }
 }

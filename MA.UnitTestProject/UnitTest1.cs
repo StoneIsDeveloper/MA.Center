@@ -159,11 +159,11 @@ namespace MA.UnitTestProject
         [TestMethod]
         public void Config()
         {
-            DelegatingParagramConfigurationSection section = ConfigurationBroker.Delegating;
+            DelegatingParagramConfigurationSection section = PracticalPattern.Configurating.ConfigurationBroker.Delegating;
             var color = section.Pictures["EventHandler"].Colorized;
             var a1 = section.Examples["MulticastMotify"].Description;
 
-            GenericsParagramConfigurationSection s2 = ConfigurationBroker.Generics;
+            GenericsParagramConfigurationSection s2 = PracticalPattern.Configurating.ConfigurationBroker.Generics;
             var n = s2.Diagrams.Count;
         }
 

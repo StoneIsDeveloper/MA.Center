@@ -36,6 +36,21 @@ namespace MA.PracticalPattern.Configurating
 
     public class DiagramConfigurationElement : NamedConfigurationElementBase { }
 
+    public class EntityMappingConfigurationElement : NamedConfigurationElementBase
+    {
+        private const string ParentNameItem = "parentName";
+
+        [ConfigurationProperty(ParentNameItem, IsRequired = true)]
+        public string ParentName
+        {
+            get
+            {
+                return base[ParentNameItem].ToString();
+            }
+        }
+
+    }
+
     public class PictureConfigurationElement : NamedConfigurationElementBase
     {
         private const string ColorizedItem = "colorized";

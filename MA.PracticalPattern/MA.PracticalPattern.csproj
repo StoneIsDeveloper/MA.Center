@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AttributedBuilder.cs" />
+    <Compile Include="Common\ConfigurationBroker.cs" />
+    <Compile Include="Common\GenericCache.cs" />
     <Compile Include="Common\IObjectBuilder.cs" />
     <Compile Include="Common\TypeCreator.cs" />
     <Compile Include="Configurating\ChapterConfigurationSectionGroup.cs" />
@@ -50,6 +52,9 @@
     <Compile Include="Configurating\NameConfigurationElementCollectionBase.cs" />
     <Compile Include="Configurating\NamedConfigurationElementBase.cs" />
     <Compile Include="Configurating\ParagraphConfigurationSectionBase.cs" />
+    <Compile Include="ConfigUtil\CreatorConfig.cs" />
+    <Compile Include="ConfigUtil\CreatorConfigurationSectionGroup.cs" />
+    <Compile Include="ConfigUtil\IConfigurationSource.cs" />
     <Compile Include="DependencyInjection\Assembler.cs" />
     <Compile Include="DependencyInjection\AttributeHelper.cs" />
     <Compile Include="DependencyInjection\Client.cs" />
@@ -69,6 +74,7 @@
     <Compile Include="Operator\Season.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RawGenericFactory.cs" />
+    <Compile Include="ViewModel\Product.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

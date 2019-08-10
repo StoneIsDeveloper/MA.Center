@@ -22,7 +22,7 @@ namespace MA.PracticalPattern.Common
 
         public T BuildUp<T>(string typeName)
         {
-            return (T)Activator.CreateInstance(Type.GetType(typeName));
+            return (T)Activator.CreateInstance(Type.GetType(typeName)); 
         }
 
         public T BuildUp<T>(string typeName, object[] args)

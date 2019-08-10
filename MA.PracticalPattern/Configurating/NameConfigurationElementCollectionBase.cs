@@ -40,6 +40,10 @@ namespace MA.PracticalPattern.Configurating
        : NameConfigurationElementCollectionBase<PictureConfigurationElement>
     { }
 
+    public class EntityMappingConfigurationElementCollection
+     : NameConfigurationElementCollectionBase<EntityMappingConfigurationElement>
+    { }
+
 
 
 
