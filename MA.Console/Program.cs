@@ -11,28 +11,44 @@ namespace MAConsole
     {
         static void Main(string[] args)
         {
-            var exitCode = HostFactory.Run(x=> 
             {
-                x.Service<HeartBeat>(s=> {
-                    s.ConstructUsing(heartBeat => new HeartBeat());
-                    s.WhenStarted(heartBeat => heartBeat.Start());
-                    s.WhenStopped(HeartBeat => HeartBeat.Stop());
+                var exitCode = HostFactory.Run(x =>
+                {
+                    x.Service<HeartBeat>(s =>
+                    {
+                        s.ConstructUsing(heartBeat => new HeartBeat());
+                        s.WhenStarted(heartBeat => heartBeat.Start());
+                        s.WhenStopped(HeartBeat => HeartBeat.Stop());
+                    });
+
+                    x.RunAsLocalSystem();
+
+                    x.SetServiceName("HearBeatService");
+                    x.SetDisplayName("HearBeatService");
+                    x.SetDescription("This is a simple heat beat service");
+
                 });
+
+                int exitCodeValue = (int)Convert.ChangeType(exitCode, exitCode.GetTypeCode());
+                Environment.ExitCode = exitCodeValue;
+            }
+
+
+            HostFactory.Run(x =>
+            {
+                x.Service<QuartzServer>();
 
                 x.RunAsLocalSystem();
 
-                x.SetServiceName("HearBeatService");
-                x.SetDisplayName("HearBeatService");
-                x.SetDescription("This is a simple heat beat service");
+                x.SetDescription("测试服务");
+                x.SetDisplayName("TestService");
+                x.SetServiceName("TopShelfQuartzDemo.TestService");
 
             });
 
-            int exitCodeValue = (int)Convert.ChangeType(exitCode, exitCode.GetTypeCode());
-            Environment.ExitCode = exitCodeValue;
-
             Console.ReadKey();
 
-            
+
         }
     }
 }
