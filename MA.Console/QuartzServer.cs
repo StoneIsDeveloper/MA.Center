@@ -1,4 +1,5 @@
-﻿using Quartz;
+﻿using log4net;
+using Quartz;
 using Quartz.Impl;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,41 @@ namespace MAConsole
 {
     public class QuartzServer : ServiceControl, ServiceSuspend
     {
-        private readonly IScheduler scheduler;
+        private readonly ILog logger;
+        private ISchedulerFactory schedulerFactory;
+        private IScheduler scheduler;
 
         public QuartzServer()
         {
-            scheduler = StdSchedulerFactory.GetDefaultScheduler().ConfigureAwait(false)
-                            .GetAwaiter().GetResult();
+            logger = LogManager.GetLogger(GetType());
+        }
+
+        public virtual async Task Initialize()
+        {
+            try
+            {
+                schedulerFactory = CreateSchedulerFactory();
+                scheduler = await GetScheduler().ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                logger.Error("Server initialization failed:" + e.Message, e);
+                throw;
+            }
+        }
+
+        protected virtual Task<IScheduler> GetScheduler()
+        {
+            var list = schedulerFactory.GetAllSchedulers();
+            
+            return schedulerFactory.GetScheduler();
+        }
+
+        protected virtual IScheduler Scheduler => scheduler;
+
+        protected virtual ISchedulerFactory CreateSchedulerFactory()
+        {
+            return new StdSchedulerFactory();
         }
 
         public bool Continue(HostControl hostControl)
