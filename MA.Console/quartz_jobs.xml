@@ -13,7 +13,7 @@
       <name>sampleJob</name>
       <group>sampleGroup</group>
       <description>Sample job for Quartz Server</description>
-      <job-type>MAConsole.SampleJob, MAConsole</job-type>
+      <job-type>MA.ConsoleQuartz.SampleJob, MA.ConsoleQuartz</job-type>
       <durable>true</durable>
       <recover>false</recover>
       <job-data-map>
@@ -40,7 +40,7 @@
         <repeat-interval>1000</repeat-interval>
       </simple>
     </trigger>
-    <trigger>
+    <!--<trigger>
       <cron>
         <name>sampleCronTrigger</name>
         <group>sampleCronGroup</group>
@@ -62,6 +62,6 @@
         <repeat-interval>2</repeat-interval>
         <repeat-interval-unit>Second</repeat-interval-unit>
       </calendar-interval>
-    </trigger>
+    </trigger>-->
   </schedule>
 </job-scheduling-data>

@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Topshelf;
 
-namespace MAConsole
+namespace MA.ConsoleQuartz
 {
     class Program
     {
@@ -27,9 +27,9 @@ namespace MAConsole
             {
                 x.RunAsLocalSystem();
 
-                x.SetDescription("测试服务");
-                x.SetDisplayName("TestService");
-                x.SetServiceName("TopShelfQuartzDemo.TestService");
+                x.SetDescription(Configuration.ServiceDescription);
+                x.SetDisplayName(Configuration.ServiceDisplayName);
+                x.SetServiceName(Configuration.ServiceName);
 
                 x.Service(factory =>
                 {
@@ -39,15 +39,42 @@ namespace MAConsole
                 });
             });
 
+           // QuartzTrainingService.InitServer();
+
 
             Console.ReadKey();
 
 
         }
+
+      
     }
 
     public static class QuartzTrainingService
     {
+        public static void InitServer()
+        {
+            var scheduler = StdSchedulerFactory.GetDefaultScheduler().ConfigureAwait(false)
+                  .GetAwaiter().GetResult();
+            scheduler.Start();
+
+            // define the job and tie it to our HelloJob class
+            IJobDetail job = JobBuilder.Create<SampleJob>()
+                .WithIdentity("myJob", "group1")
+                .Build();
+
+            // Trigger the job to run now, and then every 40 seconds
+            ITrigger trigger = TriggerBuilder.Create()
+                .WithIdentity("myTrigger", "group1")
+                .StartNow()
+                .WithSimpleSchedule(x =>
+                  x.WithIntervalInSeconds(1)
+                   .RepeatForever())
+                .Build();
+
+            scheduler.ScheduleJob(job, trigger);
+        }
+
         public static void Init()
         {
             HostFactory.Run(x =>

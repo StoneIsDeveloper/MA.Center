@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MAConsole
+namespace MA.ConsoleQuartz
 {
     public class Configuration
     {

@@ -8,14 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Topshelf;
 
-namespace MAConsole
+namespace MA.ConsoleQuartz
 {
     public class QuartzServerFactory
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof(QuartzServerFactory));
-
-        private readonly IScheduler scheduler;
-
 
         public static QuartzServer CreateServer()
         {
@@ -30,56 +27,34 @@ namespace MAConsole
             return retValue;
         }
 
-        public QuartzServerFactory()
-        {
-            //scheduler = StdSchedulerFactory.GetDefaultScheduler().ConfigureAwait(false)
-            //                .GetAwaiter().GetResult();
-            //InitServer();
-        }
+        //public QuartzServerFactory()
+        //{
+        //    //scheduler = StdSchedulerFactory.GetDefaultScheduler().ConfigureAwait(false)
+        //    //                .GetAwaiter().GetResult();
+        //    //InitServer();
+        //}
 
-        public void InitServer()
-        {
-            scheduler.Start();
+        //public void InitServer()
+        //{
+        //    scheduler.Start();
 
-            // define the job and tie it to our HelloJob class
-            IJobDetail job = JobBuilder.Create<SampleJob>()
-                .WithIdentity("myJob", "group1")
-                .Build();
+        //    // define the job and tie it to our HelloJob class
+        //    IJobDetail job = JobBuilder.Create<SampleJob>()
+        //        .WithIdentity("myJob", "group1")
+        //        .Build();
 
-            // Trigger the job to run now, and then every 40 seconds
-            ITrigger trigger = TriggerBuilder.Create()
-                .WithIdentity("myTrigger", "group1")
-                .StartNow()
-                .WithSimpleSchedule(x =>
-                  x.WithIntervalInSeconds(2)
-                   .RepeatForever())
-                .Build();
+        //    // Trigger the job to run now, and then every 40 seconds
+        //    ITrigger trigger = TriggerBuilder.Create()
+        //        .WithIdentity("myTrigger", "group1")
+        //        .StartNow()
+        //        .WithSimpleSchedule(x =>
+        //          x.WithIntervalInSeconds(2)
+        //           .RepeatForever())
+        //        .Build();
 
-            scheduler.ScheduleJob(job, trigger);
-        }
+        //    scheduler.ScheduleJob(job, trigger);
+        //}
 
-        public bool Continue(HostControl hostControl)
-        {
-            scheduler.ResumeAll();
-            return true;
-        }
 
-        public bool Pause(HostControl hostControl)
-        {
-            scheduler.PauseAll();
-            return true;
-        }
-
-        public bool Start(HostControl hostControl)
-        {
-            scheduler.Start();
-            return true;
-        }
-
-        public bool Stop(HostControl hostControl)
-        {
-            scheduler.Clear();
-            return true;
-        }
     }
 }

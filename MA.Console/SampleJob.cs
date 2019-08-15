@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MAConsole
+namespace MA.ConsoleQuartz
 {
     public class SampleJob : IJob
     {
@@ -25,7 +25,7 @@ namespace MAConsole
         {
             Console.WriteLine("Log Text...");
             string[] lines = new string[] { $"{DateTime.Now.ToString()} :LogText() Runnig..." };
-           // File.AppendAllLines(@"E:\Heartbeat.txt", lines);
+            // File.AppendAllLines(@"E:\Heartbeat.txt", lines);
             File.AppendAllLines(@"E:\QuartzJobLog.txt", lines);
             // LoggerFactory.Info("SampleJob running...");
         }

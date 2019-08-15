@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MA.PracticalPattern", "MA.P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MA.UnitTestProject", "MA.UnitTestProject\MA.UnitTestProject.csproj", "{912B82D4-03EA-49D8-B8C3-95ADDF946764}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MA.Console", "MA.Console\MA.Console.csproj", "{7545599F-4394-483C-A1C2-5E7282EBCDC1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MA.ConsoleQuartz", "MA.Console\MA.ConsoleQuartz.csproj", "{7545599F-4394-483C-A1C2-5E7282EBCDC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

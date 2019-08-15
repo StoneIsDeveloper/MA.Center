@@ -3,29 +3,37 @@ using Quartz;
 using Quartz.Impl;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Topshelf;
 
-namespace MAConsole
+namespace MA.ConsoleQuartz
 {
-    public class QuartzServer : ServiceControl, ServiceSuspend
+    public class QuartzServer : ServiceControl, IQuartzServer
     {
         private readonly ILog logger;
         private ISchedulerFactory schedulerFactory;
         private IScheduler scheduler;
 
-        public QuartzServer()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QuartzServer"/> class.
+        /// </summary>
+	    public QuartzServer()
         {
             logger = LogManager.GetLogger(GetType());
         }
 
+        /// <summary>
+        /// Initializes the instance of the <see cref="QuartzServer"/> class.
+        /// </summary>
         public virtual async Task Initialize()
         {
             try
             {
                 schedulerFactory = CreateSchedulerFactory();
+
                 scheduler = await GetScheduler().ConfigureAwait(false);
             }
             catch (Exception e)
@@ -35,41 +43,131 @@ namespace MAConsole
             }
         }
 
-        protected virtual Task<IScheduler> GetScheduler()
+        /// <summary>
+        /// Gets the scheduler with which this server should operate with.
+        /// </summary>
+        /// <returns></returns>
+	    protected virtual Task<IScheduler> GetScheduler()
         {
-            var list = schedulerFactory.GetAllSchedulers();
-            
             return schedulerFactory.GetScheduler();
         }
 
-        protected virtual IScheduler Scheduler => scheduler;
+        /// <summary>
+        /// Returns the current scheduler instance (usually created in <see cref="Initialize" />
+        /// using the <see cref="GetScheduler" /> method).
+        /// </summary>
+	    protected virtual IScheduler Scheduler => scheduler;
 
+        /// <summary>
+        /// Creates the scheduler factory that will be the factory
+        /// for all schedulers on this instance.
+        /// </summary>
+        /// <returns></returns>
         protected virtual ISchedulerFactory CreateSchedulerFactory()
         {
+            NameValueCollection nvc = new NameValueCollection()
+            {
+                //["quartz.plugin.xml.type"] = "Quartz.Plugin.Xml.JobInitializationPlugin ,Quartz",
+                //["quartz.plugin.xml.fileNames"] = "~/quartz_jobs.xml",
+                ////三秒都一次配置文件，这只这个参数可以让 修改了配置文件也不用重新启动程序。
+                //["quartz.plugin.xml.ScanInterval"] = "3"
+            };
             return new StdSchedulerFactory();
         }
 
-        public bool Continue(HostControl hostControl)
+        /// <summary>
+        /// Starts this instance, delegates to scheduler.
+        /// </summary>
+        public virtual void Start()
         {
-            scheduler.ResumeAll();
-            return true;
+            try
+            {
+                scheduler.Start();
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal($"Scheduler start failed: {ex.Message}", ex);
+                throw;
+            }
+
+            logger.Info("Scheduler started successfully");
         }
 
-        public bool Pause(HostControl hostControl)
+        /// <summary>
+        /// Stops this instance, delegates to scheduler.
+        /// </summary>
+        public virtual void Stop()
+        {
+            try
+            {
+                scheduler.Shutdown(true);
+            }
+            catch (Exception ex)
+            {
+                logger.Error($"Scheduler stop failed: {ex.Message}", ex);
+                throw;
+            }
+
+            logger.Info("Scheduler shutdown complete");
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+	    public virtual void Dispose()
+        {
+            // no-op for now
+        }
+
+        /// <summary>
+        /// Pauses all activity in scheduler.
+        /// </summary>
+	    public virtual void Pause()
         {
             scheduler.PauseAll();
-            return true;
         }
 
+        /// <summary>
+        /// Resumes all activity in server.
+        /// </summary>
+	    public void Resume()
+        {
+            scheduler.ResumeAll();
+        }
+
+        /// <summary>
+        /// TopShelf's method delegated to <see cref="Start()"/>.
+        /// </summary>
         public bool Start(HostControl hostControl)
         {
-            scheduler.Start();
+            Start();
             return true;
         }
 
+        /// <summary>
+        /// TopShelf's method delegated to <see cref="Stop()"/>.
+        /// </summary>
         public bool Stop(HostControl hostControl)
         {
-            scheduler.Clear();
+            Stop();
+            return true;
+        }
+
+        /// <summary>
+        /// TopShelf's method delegated to <see cref="Pause()"/>.
+        /// </summary>
+        public bool Pause(HostControl hostControl)
+        {
+            Pause();
+            return true;
+        }
+
+        /// <summary>
+        /// TopShelf's method delegated to <see cref="Resume()"/>.
+        /// </summary>
+        public bool Continue(HostControl hostControl)
+        {
+            Resume();
             return true;
         }
     }
