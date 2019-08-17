@@ -17,14 +17,21 @@ namespace MA.ConsoleQuartz
         {
             logger.Info("SampleJob running...");
             await Task.Delay(TimeSpan.FromSeconds(2));
-            logger.Info("SampleJob run finished.");
-            LogText();
+            //logger.Info("SampleJob run finished.");
+
+            var info = "Test Sample 123...";
+            new Task(() =>
+            {
+                LogText(info);
+            }).RunSynchronously();
+           
         }
 
-        public void LogText()
+
+        public void LogText(string info)
         {
-            Console.WriteLine("Log Text...");
-            string[] lines = new string[] { $"{DateTime.Now.ToString()} :LogText() Runnig..." };
+            Console.WriteLine(info);
+            string[] lines = new string[] { $"{DateTime.Now.ToString()} {info}" };
             // File.AppendAllLines(@"E:\Heartbeat.txt", lines);
             File.AppendAllLines(@"E:\QuartzJobLog.txt", lines);
             // LoggerFactory.Info("SampleJob running...");

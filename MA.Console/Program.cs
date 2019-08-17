@@ -1,4 +1,5 @@
 ﻿using log4net.Config;
+using MA.ConsoleQuartz.Email;
 using Quartz;
 using Quartz.Impl;
 using System;
@@ -39,7 +40,14 @@ namespace MA.ConsoleQuartz
                 });
             });
 
-           // QuartzTrainingService.InitServer();
+            // QuartzTrainingService.InitServer();
+
+            //var mailTo =  "1047284244@qq.com";
+            //var mailSubject = "Test Mial 2019";
+            //var  mailContent = $@"{DateTime.Now.ToString()} <br/>
+            //                     <h3> Test Mail Contect </h3> <br/>";
+
+            //EmailManager.SendMail(mailTo, mailSubject, mailContent);
 
 
             Console.ReadKey();

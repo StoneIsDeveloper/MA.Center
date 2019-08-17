@@ -13,7 +13,7 @@
       <name>sampleJob</name>
       <group>sampleGroup</group>
       <description>Sample job for Quartz Server</description>
-      <job-type>MA.ConsoleQuartz.SampleJob, MA.ConsoleQuartz</job-type>
+      <job-type>MA.ConsoleQuartz.Email.SendMailUtilJob, MA.ConsoleQuartz</job-type>
       <durable>true</durable>
       <recover>false</recover>
       <job-data-map>
@@ -37,7 +37,7 @@
         <job-group>sampleGroup</job-group>
         <misfire-instruction>SmartPolicy</misfire-instruction>
         <repeat-count>-1</repeat-count>
-        <repeat-interval>1000</repeat-interval>
+        <repeat-interval>3000</repeat-interval>
       </simple>
     </trigger>
     <!--<trigger>
