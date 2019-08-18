@@ -10,6 +10,25 @@ namespace MA.SocketClient
 {
     class Program
     {
+
+        /// <summary>
+        /// 1 本质理解网络协议
+        /// 2 Http和 Socket
+        /// 3 Socket Demo 
+        /// 4 基于SuperSocket功能实现
+        /// 
+        /// socekt的特点：跟Http不一样，一次连接，多次通信，Server可以直接给client发消息
+        /// 
+        /// Http协议也是通过Socket通信
+        /// 
+        /// socekt:主动发消息给客户端，数据的即时刷新，提升效率，不需要频繁建立和释放连接
+        /// 
+        /// 多客户端 -- 一个服务端
+        /// SuperSocket 完成一个简单的聊天程序：
+        /// 登录验证/单点登录/简单数据传输/心跳机制
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             int port = 2018;

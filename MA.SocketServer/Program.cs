@@ -10,7 +10,9 @@ namespace MA.SocketServer
     {
         static void Main(string[] args)
         {
-            SimpleSocketServer.Process();
+            SuperSocketMain.Init();
+           
+           // SimpleSocketServer.Process();
         }
     }
 }
