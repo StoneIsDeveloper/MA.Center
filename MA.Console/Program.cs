@@ -1,5 +1,6 @@
 ﻿using log4net.Config;
 using MA.ConsoleQuartz.Email;
+using MA.ServiceCenter;
 using Quartz;
 using Quartz.Impl;
 using System;
@@ -19,26 +20,26 @@ namespace MA.ConsoleQuartz
         static void Main(string[] args)
         {
             // change from service account's dir to more logical one
-            Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
+            //Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
 
-            var logRepository = log4net.LogManager.GetRepository(Assembly.GetEntryAssembly());
-            XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
+            //var logRepository = log4net.LogManager.GetRepository(Assembly.GetEntryAssembly());
+            //XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
 
-            HostFactory.Run(x =>
-            {
-                x.RunAsLocalSystem();
+            //HostFactory.Run(x =>
+            //{
+            //    x.RunAsLocalSystem();
 
-                x.SetDescription(Configuration.ServiceDescription);
-                x.SetDisplayName(Configuration.ServiceDisplayName);
-                x.SetServiceName(Configuration.ServiceName);
+            //    x.SetDescription(Configuration.ServiceDescription);
+            //    x.SetDisplayName(Configuration.ServiceDisplayName);
+            //    x.SetServiceName(Configuration.ServiceName);
 
-                x.Service(factory =>
-                {
-                    QuartzServer server = QuartzServerFactory.CreateServer();
-                    server.Initialize().GetAwaiter().GetResult();
-                    return server;
-                });
-            });
+            //    x.Service(factory =>
+            //    {
+            //        QuartzServer server = QuartzServerFactory.CreateServer();
+            //        server.Initialize().GetAwaiter().GetResult();
+            //        return server;
+            //    });
+            //});
 
             // QuartzTrainingService.InitServer();
 
@@ -48,6 +49,8 @@ namespace MA.ConsoleQuartz
             //                     <h3> Test Mail Contect </h3> <br/>";
 
             //EmailManager.SendMail(mailTo, mailSubject, mailContent);
+            IWorkService workService = new WorkLogService();
+            workService.Process();
 
 
             Console.ReadKey();
