@@ -1,8 +1,11 @@
 ﻿using log4net.Config;
 using MA.ConsoleQuartz.Email;
+using MA.ConsoleQuartz.Log;
 using MA.ServiceCenter;
 using Quartz;
 using Quartz.Impl;
+using Serilog;
+using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,6 +22,7 @@ namespace MA.ConsoleQuartz
     {
         static void Main(string[] args)
         {
+            #region windows Service
             // change from service account's dir to more logical one
             //Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
 
@@ -42,24 +46,27 @@ namespace MA.ConsoleQuartz
             //});
 
             // QuartzTrainingService.InitServer();
+            #endregion
 
+            #region Send Email
             //var mailTo =  "1047284244@qq.com";
             //var mailSubject = "Test Mial 2019";
             //var  mailContent = $@"{DateTime.Now.ToString()} <br/>
             //                     <h3> Test Mail Contect </h3> <br/>";
 
             //EmailManager.SendMail(mailTo, mailSubject, mailContent);
-            IWorkService workService = new WorkLogService();
-            workService.Process();
+            #endregion
 
+            //  IWorkService workService = new WorkLogService();
+            // workService.Process();
+
+            SerilogManager.ConsoleLog();
 
             Console.ReadKey();
 
-
         }
-
-      
     }
+
 
     public static class QuartzTrainingService
     {
