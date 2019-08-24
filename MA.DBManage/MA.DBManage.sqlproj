@@ -61,5 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Scripts\StoreProcedure\InsertLog.sql" />
+    <Build Include="Scripts\StoreProcedure\InsertWorkLogProcess.sql" />
   </ItemGroup>
 </Project>

@@ -10,6 +10,12 @@ namespace MA.ServiceCenter
     {
         static void Main(string[] args)
         {
+            int batchId = 0;
+            int processId = 0;
+           IWorkService workService = ServiceFactory.CreateWorkService(processId);
+
+            workService.Process();
+
         }
     }
 }

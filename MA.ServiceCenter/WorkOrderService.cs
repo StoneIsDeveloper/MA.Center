@@ -4,26 +4,20 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace MA.ServiceCenter
 {
-    public class WorkLogService : IWorkService
+    // ProcessID = 1
+    public class WorkOrderService : IWorkService
     {
+
         public readonly string ConnectionString = DBConfiguration.ConnectionString;
 
         public void Process()
         {
-            while (1 > 0)
-            {
-                RunLog();
-                Thread.Sleep(1000);
-            }
-
-
-            // write daily log to db
-
+            // insert one order work
+            RunLog();
         }
 
         public void RunLog()
@@ -36,21 +30,24 @@ namespace MA.ServiceCenter
                 //打开数据库连接
                 conn.Open();
                 //创建SqlCommand对象
-                SqlCommand cmd = new SqlCommand("dbo.InsertLog", conn);
+                SqlCommand cmd = new SqlCommand("dbo.InsertLogProcess", conn);
                 //设置SQLCommand对象的命令类型（CommandType）是存储过程
                 cmd.CommandType = CommandType.StoredProcedure;
                 //设置存储过程需要的参数
-                var typeID = 1;
-
                 Random ran = new Random();
-                typeID = ran.Next(1, 10);
                 var key = ran.Next(1, 1000);
-
-                var description = $"Log:{key}";
+                var workLogId = 2;
                 var userName = $"stone:{key}";
+                var rocessTypeId = 2;
+                var processTypeName = "order";
+                var stageId = 1;
+                var tatusId = 1;
 
-                cmd.Parameters.AddWithValue("@TypeID", typeID);
-                cmd.Parameters.AddWithValue("@Description", description);
+                cmd.Parameters.AddWithValue("@WorkLogId", workLogId);
+                cmd.Parameters.AddWithValue("@ProcessTypeId", rocessTypeId);
+                cmd.Parameters.AddWithValue("@ProcessTypeName", processTypeName);
+                cmd.Parameters.AddWithValue("@StageId", stageId);
+                cmd.Parameters.AddWithValue("@StatusId", tatusId);
                 cmd.Parameters.AddWithValue("@UserName", userName);
                 //执行存储过程
                 int returnvalue = cmd.ExecuteNonQuery();

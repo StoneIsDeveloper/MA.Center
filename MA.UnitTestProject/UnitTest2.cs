@@ -15,5 +15,12 @@ namespace MA.UnitTestProject
 
 
         }
+
+        [TestMethod]
+        public void TestMethodTrigerService()
+        {
+            WorkTrigerService.TrackingWork();
+           
+        }
     }
 }

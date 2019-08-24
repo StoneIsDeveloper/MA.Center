@@ -46,10 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBConfiguration.cs" />
+    <Compile Include="DBEnums.cs" />
+    <Compile Include="WorkOrderService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceFactory.cs" />
     <Compile Include="WorkLogService.cs" />
     <Compile Include="IWorkService.cs" />
+    <Compile Include="WorkTrigerService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
