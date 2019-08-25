@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 /MA.NetWeb/Web.Debug.config
 /MA.NetWeb/Web.Release.config
+/MA.Console/Util/LogHelper.cs
