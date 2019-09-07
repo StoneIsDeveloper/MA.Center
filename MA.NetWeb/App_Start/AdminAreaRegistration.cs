@@ -21,7 +21,7 @@ namespace MA.NetWeb.App_Start
             context.MapRoute(
                 name: "Admin_default",
                 url: "Admin/{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                defaults: new { controller = "Account", action = "Index", id = UrlParameter.Optional },
                 namespaces: new string[] { "MA.NetWeb.Areas.Admin.Controllers" }
             );
 

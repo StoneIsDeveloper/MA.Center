@@ -49,8 +49,10 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contact.cs" />
     <Compile Include="DIUnitTest.cs" />
     <Compile Include="Production.cs" />
     <Compile Include="UnitTest1.cs" />

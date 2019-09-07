@@ -12,5 +12,10 @@ namespace MA.NetWeb.Area.Admin
         {
             return View();
         }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
     }
 }
