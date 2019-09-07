@@ -61,11 +61,14 @@
     <Folder Include="Scripts" />
     <Folder Include="Scripts\StoreProcedure" />
     <Folder Include="Scripts\Table" />
+    <Folder Include="Scripts\CustomType" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Table\Serilogs.sql" />
     <None Include="Scripts\Table\dbo.WorkLog.sql" />
     <None Include="Scripts\Table\dbo.WorkLogProcess.sql" />
+    <None Include="Scripts\CustomType\dbo.IDList.sql" />
+    <None Include="Scripts\StoreProcedure\GetWorkLog_ByTypeIds.sql" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Scripts\StoreProcedure\InsertLog.proc.sql" />
